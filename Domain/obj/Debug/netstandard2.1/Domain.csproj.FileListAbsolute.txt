@@ -1,0 +1,8 @@
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/bin/Debug/netstandard2.1/Domain.deps.json
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/bin/Debug/netstandard2.1/Domain.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/bin/Debug/netstandard2.1/Domain.pdb
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/Debug/netstandard2.1/Domain.csprojAssemblyReference.cache
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfoInputs.cache
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/Debug/netstandard2.1/Domain.AssemblyInfo.cs
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/Debug/netstandard2.1/Domain.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/Debug/netstandard2.1/Domain.pdb

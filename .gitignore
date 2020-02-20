@@ -1,3 +1,5 @@
 **/node_moduels
 .vscode
 .DS_Store
+**/**.db-**
+**/**.db

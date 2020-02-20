@@ -4,6 +4,59 @@
     "/Users/jamen/Downloads/GIthub/SocialApp/Persistence/Persistence.csproj": {}
   },
   "projects": {
+    "/Users/jamen/Downloads/GIthub/SocialApp/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jamen/Downloads/GIthub/SocialApp/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/Users/jamen/Downloads/GIthub/SocialApp/Domain/Domain.csproj",
+        "packagesPath": "/Users/jamen/.nuget/packages/",
+        "outputPath": "/Users/jamen/Downloads/GIthub/SocialApp/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/jamen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/jamen/Downloads/GIthub/SocialApp/Persistence/Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -20,14 +73,18 @@
           "/Users/jamen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netstandard2.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "projectReferences": {}
+          "netstandard2.1": {
+            "projectReferences": {
+              "/Users/jamen/Downloads/GIthub/SocialApp/Domain/Domain.csproj": {
+                "projectPath": "/Users/jamen/Downloads/GIthub/SocialApp/Domain/Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -37,13 +94,15 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netstandard2.1": {
           "dependencies": {
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -56,6 +115,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
         }
       }

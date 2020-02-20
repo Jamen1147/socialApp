@@ -1,0 +1,13 @@
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Application.deps.json
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Application.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Application.pdb
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Domain.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Persistence.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Domain.pdb
+/Users/jamen/Downloads/GIthub/SocialApp/Application/bin/Debug/netstandard2.0/Persistence.pdb
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.csprojAssemblyReference.cache
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.AssemblyInfoInputs.cache
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.AssemblyInfo.cs
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.csproj.CopyComplete
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.dll
+/Users/jamen/Downloads/GIthub/SocialApp/Application/obj/Debug/netstandard2.0/Application.pdb
