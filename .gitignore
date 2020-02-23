@@ -3,6 +3,9 @@
 **/**.db-**
 **/**.db
 
+**/bin
+**/obj
+
 # dependencies
 **/.pnp
 **/.pnp.js
