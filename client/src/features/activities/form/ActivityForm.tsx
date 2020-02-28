@@ -1,35 +1,57 @@
-import React, { useState, FormEvent, useContext } from 'react';
+import React, { useState, useEffect, FormEvent, useContext } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
 import { v4 as uuid } from 'uuid';
 import ActivityStore from '../../../app/stores/activityStore';
 import { observer } from 'mobx-react-lite';
+import { RouteComponentProps } from 'react-router';
 
-interface IProps {
-  activity: IActivity | undefined;
+interface DetailParams {
+  id: string;
 }
-const ActivityForm: React.FC<IProps> = ({ activity: InitFormState }) => {
+
+const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
+  match,
+  history
+}) => {
   const activityStore = useContext(ActivityStore);
   const {
     createActivity,
     editActivity,
     submitting,
-    cancelFormOpen
+    cancelFormOpen,
+    activity: InitFormState,
+    loadActivity,
+    clearActivity
   } = activityStore;
-  const intiForm = () =>
-    InitFormState
-      ? InitFormState
-      : {
-          id: '',
-          title: '',
-          category: '',
-          description: '',
-          date: '',
-          city: '',
-          venue: ''
-        };
 
-  const [activity, setActivity] = useState<IActivity>(intiForm);
+  const [activity, setActivity] = useState<IActivity>({
+    id: '',
+    title: '',
+    category: '',
+    description: '',
+    date: '',
+    city: '',
+    venue: ''
+  });
+
+  useEffect(() => {
+    if (match.params.id && activity.id.length === 0) {
+      loadActivity(match.params.id).then(
+        () => InitFormState && setActivity(InitFormState)
+      );
+    }
+
+    return () => {
+      clearActivity();
+    };
+  }, [
+    loadActivity,
+    clearActivity,
+    match.params.id,
+    InitFormState,
+    activity.id.length
+  ]);
 
   const handleSubmit = () => {
     if (!activity.id) {
@@ -37,9 +59,13 @@ const ActivityForm: React.FC<IProps> = ({ activity: InitFormState }) => {
         ...activity,
         id: uuid()
       };
-      createActivity(newActivity);
+      createActivity(newActivity).then(() =>
+        history.push(`/activities/${activity.id}`)
+      );
     } else {
-      editActivity(activity);
+      editActivity(activity).then(() =>
+        history.push(`/activities/${activity.id}`)
+      );
     }
   };
 
