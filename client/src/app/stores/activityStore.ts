@@ -8,10 +8,8 @@ import { SyntheticEvent } from 'react';
 configure({ enforceActions: 'always' });
 
 class ActivityStore {
-  @observable activities: IActivity[] = [];
   @observable loadingInitial = false;
   @observable activity: IActivity | null = null;
-  @observable editMode = false;
   @observable submitting = false;
   @observable activityRegistry = new Map();
   @observable target = '';
@@ -66,7 +64,6 @@ class ActivityStore {
     if (!err) {
       runInAction('createActivity success', () => {
         this.activityRegistry.set(activity.id, activity);
-        this.editMode = false;
       });
     } else {
       console.log(err);
@@ -83,7 +80,6 @@ class ActivityStore {
       runInAction('editActivity success', () => {
         this.activityRegistry.set(activity.id, activity);
         this.activity = activity;
-        this.editMode = false;
       });
     } else {
       console.log(err);
@@ -111,29 +107,6 @@ class ActivityStore {
       this.submitting = false;
       this.target = '';
     });
-  };
-
-  @action openEditForm = (id: string) => {
-    this.activity = this.activityRegistry.get(id);
-    this.editMode = true;
-  };
-
-  @action openCreateForm = () => {
-    this.editMode = true;
-    this.activity = null;
-  };
-
-  @action cancelSelectedActivity = () => {
-    this.activity = null;
-  };
-
-  @action cancelFormOpen = () => {
-    this.editMode = false;
-  };
-
-  @action selectActivity = (id: string) => {
-    this.activity = this.activityRegistry.get(id);
-    this.editMode = false;
   };
 
   @action clearActivity = () => {
