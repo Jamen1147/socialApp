@@ -20,12 +20,15 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   const { activity, loadActivity, loadingInitial } = activityStore;
 
   useEffect(() => {
+    console.log('did mount');
     loadActivity(match.params.id);
-  }, [loadActivity, match.params.id, history]);
+  }, [loadActivity, match.params.id]);
 
-  if (loadingInitial || !activity) {
+  if (loadingInitial) {
     return <LoadingComponent />;
   }
+
+  if (!activity) return <h2>Not Found</h2>;
 
   return (
     <Grid>
