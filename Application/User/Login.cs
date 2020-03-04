@@ -1,5 +1,7 @@
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -27,19 +29,30 @@ namespace Application.User
 
     public class Handler : IRequestHandler<Query, AppUser>
     {
+      private readonly UserManager<AppUser> _userManager;
+      private readonly SignInManager<AppUser> _signInManager;
       public Handler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
       {
+        _signInManager = signInManager;
+        _userManager = userManager;
 
       }
 
       public async Task<AppUser> Handle(Query request, CancellationToken cancellationToken)
       {
-        // handler logic goes here
-      }
+        var user = await _userManager.FindByEmailAsync(request.Email);
+        if (user == null)
+          throw new RestException(HttpStatusCode.Unauthorized);
 
-      public Task<AppUser> Handle(Query request, CancellationToken cancellationToken)
-      {
-        throw new System.NotImplementedException();
+        var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+
+        if (result.Succeeded)
+        {
+          //TODO: generate token
+          return user;
+        }
+
+        throw new RestException(HttpStatusCode.Unauthorized);
       }
     }
   }
