@@ -8,6 +8,7 @@ import ActivityDetailHeader from './ActivityDetailHeader';
 import ActivityDetailInfo from './ActivityDetailInfo';
 import ActivityDetailSidebar from './ActivityDetailSidebar';
 import ActivityDetailChat from './ActivityDetailChat';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 
 interface DetailParams {
   id: string;
@@ -16,11 +17,10 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   match,
   history
 }) => {
-  const activityStore = React.useContext(ActivityStore);
-  const { activity, loadActivity, loadingInitial } = activityStore;
+  const rootStore = React.useContext(RootStoreContext);
+  const { activity, loadActivity, loadingInitial } = rootStore.activityStore;
 
   useEffect(() => {
-    console.log('did mount');
     loadActivity(match.params.id);
   }, [loadActivity, match.params.id]);
 

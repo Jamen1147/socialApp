@@ -6,10 +6,17 @@ import { usePromise } from '../api/usePromise';
 import { SyntheticEvent } from 'react';
 import { history } from '../..';
 import { toast } from 'react-toastify';
+import { RootStore } from './rootStore';
 
 configure({ enforceActions: 'always' });
 
-class ActivityStore {
+export default class ActivityStore {
+  rootStore: RootStore;
+
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
+
   @observable loadingInitial = false;
   @observable activity: IActivity | null = null;
   @observable submitting = false;
@@ -140,5 +147,3 @@ class ActivityStore {
     this.activity = null;
   };
 }
-
-export default createContext(new ActivityStore());
