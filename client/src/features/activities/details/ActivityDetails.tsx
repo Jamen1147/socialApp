@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
-import ActivityStore from '../../../app/stores/activityStore';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -14,8 +13,7 @@ interface DetailParams {
   id: string;
 }
 const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
-  match,
-  history
+  match
 }) => {
   const rootStore = React.useContext(RootStoreContext);
   const { activity, loadActivity, loadingInitial } = rootStore.activityStore;

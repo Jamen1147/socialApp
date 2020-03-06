@@ -25,6 +25,18 @@ export default class UserStore {
         this.user = user;
       });
       this.rootStore.commonStore.setToken(user.token);
+      this.rootStore.modalStore.closeModal();
+      history.push('/activities');
+    } else {
+      throw err;
+    }
+  };
+
+  @action register = async (values: IUserFormValues) => {
+    const [err, user] = await usePromise(agent.User.register(values));
+    if (!err) {
+      this.rootStore.commonStore.setToken(user.token);
+      this.rootStore.modalStore.closeModal();
       history.push('/activities');
     } else {
       throw err;

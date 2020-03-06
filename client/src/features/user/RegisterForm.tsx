@@ -9,18 +9,20 @@ import { combineValidators, isRequired } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
 
 const validate = combineValidators({
+  username: isRequired('username'),
+  displayName: isRequired('display name'),
   email: isRequired('email'),
   password: isRequired('password')
 });
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { login } = rootStore.userStore;
+  const { register } = rootStore.userStore;
 
   return (
     <FinalForm
       onSubmit={(values: IUserFormValues) =>
-        login(values).catch(err => ({
+        register(values).catch(err => ({
           [FORM_ERROR]: err
         }))
       }
@@ -28,7 +30,6 @@ const LoginForm = () => {
       render={({
         handleSubmit,
         submitting,
-        form,
         submitError,
         invalid,
         pristine,
@@ -37,9 +38,15 @@ const LoginForm = () => {
         <Form onSubmit={handleSubmit} error>
           <Header
             as='h2'
-            content='Login to Reactivities'
+            content='Sign up Reactivities'
             color='teal'
             textAlign='center'
+          />
+          <Field name='username' component={TextInput} placeholder='Username' />
+          <Field
+            name='displayName'
+            component={TextInput}
+            placeholder='Display Name'
           />
           <Field name='email' component={TextInput} placeholder='Email' />
           <Field
@@ -59,7 +66,7 @@ const LoginForm = () => {
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
             color='teal'
-            content='Login'
+            content='Register'
           />
         </Form>
       )}
@@ -67,4 +74,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
