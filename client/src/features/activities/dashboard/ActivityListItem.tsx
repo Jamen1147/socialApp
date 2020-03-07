@@ -3,17 +3,43 @@ import { Item, Button, Label, Segment, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
+import ActivityListItemAttendees from './ActivityListItemAttendees';
 
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
+  const host = activity.attendees.filter(a => a.isHost)[0];
   return (
     <Segment.Group>
       <Segment>
         <Item.Group>
           <Item>
-            <Item.Image size='tiny' circular src='/assets/user.png' />
+            <Item.Image
+              size='tiny'
+              circular
+              src={host.image || `/assets/user.png`}
+            />
             <Item.Content>
-              <Item.Header as='a'>{activity.title}</Item.Header>
-              <Item.Description>Hosted By Bob</Item.Description>
+              <Item.Header as={Link} to={`/activities/${activity.id}`}>
+                {activity.title}
+              </Item.Header>
+              <Item.Description>Hosted By {host.displayName}</Item.Description>
+              {activity.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color='orange'
+                    content='You are hosting this activity'
+                  />
+                </Item.Description>
+              )}
+              {activity.isGoing && !activity.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color='green'
+                    content='You are going this activity'
+                  />
+                </Item.Description>
+              )}
               <Item.Extra>
                 <Label basic content={activity.category} />
               </Item.Extra>
@@ -25,7 +51,9 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
         <Icon name='clock' /> {format(activity.date, 'h:mm a')}
         <Icon name='marker' /> {activity.venue}, {activity.city}
       </Segment>
-      <Segment secondary>Attendees will go here</Segment>
+      <Segment secondary>
+        <ActivityListItemAttendees attendees={activity.attendees} />
+      </Segment>
       <Segment clearing>
         <span>{activity.description}</span>
         <Button
